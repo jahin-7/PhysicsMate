@@ -1,0 +1,1 @@
+FROM ./qwen3-4b.Q4_K_M.gguf

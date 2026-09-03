@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NCTB পদার্থবিজ্ঞান</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%2314a8a0'/%3E%3Cg fill='none' stroke='white' stroke-width='6'%3E%3Cellipse cx='50' cy='50' rx='34' ry='14'/%3E%3Cellipse cx='50' cy='50' rx='34' ry='14' transform='rotate(60 50 50)'/%3E%3Cellipse cx='50' cy='50' rx='34' ry='14' transform='rotate(120 50 50)'/%3E%3C/g%3E%3Ccircle cx='50' cy='50' r='8' fill='white'/%3E%3C/svg%3E">
+<style>
+  :root {
+    color-scheme: light;
+    --paper: #f6faf9; --paper-2: #e7f1ef; --side: rgba(244,250,249,0.72);
+    --glass: rgba(255,255,255,0.6); --glass-strong: rgba(255,255,255,0.82); --glass-edge: rgba(255,255,255,0.7);
+    --ink: #16211f; --ink-soft: #5c6b68; --ink-faint: #93a3a0; --hair: rgba(20,60,55,0.12);
+    --accent: #14a8a0; --accent-2: #0d857f; --accent-ink: #fff;
+    --accent-weak: rgba(20,168,160,0.10); --accent-weak-2: rgba(20,168,160,0.18);
+    --shadow: 0 12px 40px rgba(10,70,65,0.13); --shadow-soft: 0 2px 10px rgba(10,70,65,0.07);
+    --m0: #4fc0b5; --m1: #14a8a0; --m2: #0a6f6b;
+    --blob-a: rgba(20,168,160,0.10); --blob-b: rgba(80,200,180,0.09);
+    --spring: cubic-bezier(0.22,1,0.36,1);
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0d1413; --paper-2: #131d1b; --side: rgba(16,24,22,0.72);
+    --glass: rgba(26,38,36,0.55); --glass-strong: rgba(30,44,42,0.85); --glass-edge: rgba(200,255,245,0.10);
+    --ink: #e9f2f0; --ink-soft: #97a9a5; --ink-faint: #6a7c78; --hair: rgba(200,255,245,0.11);
+    --accent: #3ecfc4; --accent-2: #2bb3aa; --accent-ink: #04201e;
+    --accent-weak: rgba(62,207,196,0.14); --accent-weak-2: rgba(62,207,196,0.24);
+    --shadow: 0 12px 40px rgba(0,0,0,0.5); --shadow-soft: 0 2px 10px rgba(0,0,0,0.35);
+    --m0: #6fe0d5; --m1: #3ecfc4; --m2: #2bb3aa;
+    --blob-a: rgba(62,207,196,0.13); --blob-b: rgba(80,200,180,0.08);
+  }}
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #0d1413; --paper-2: #131d1b; --side: rgba(16,24,22,0.72);
+    --glass: rgba(26,38,36,0.55); --glass-strong: rgba(30,44,42,0.85); --glass-edge: rgba(200,255,245,0.10);
+    --ink: #e9f2f0; --ink-soft: #97a9a5; --ink-faint: #6a7c78; --hair: rgba(200,255,245,0.11);
+    --accent: #3ecfc4; --accent-2: #2bb3aa; --accent-ink: #04201e;
+    --accent-weak: rgba(62,207,196,0.14); --accent-weak-2: rgba(62,207,196,0.24);
+    --shadow: 0 12px 40px rgba(0,0,0,0.5); --shadow-soft: 0 2px 10px rgba(0,0,0,0.35);
+    --m0: #6fe0d5; --m1: #3ecfc4; --m2: #2bb3aa;
+    --blob-a: rgba(62,207,196,0.13); --blob-b: rgba(80,200,180,0.08);
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; margin: 0; }
+  body { background: var(--paper); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; height: 100dvh; overflow: hidden; }
+  body::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(50vw 40vh at 78% -6%, var(--blob-a), transparent 70%), radial-gradient(40vw 36vh at 96% 30%, var(--blob-b), transparent 66%); }
+  .bn { font-family: "Kohinoor Bangla","Bangla MN","Noto Sans Bengali",-apple-system,sans-serif; }
+  .app { position: relative; z-index: 1; display: flex; height: 100dvh; }
+
+  .sidebar { flex: 0 0 280px; display: flex; flex-direction: column; min-height: 0;
+    background: var(--side); backdrop-filter: saturate(180%) blur(26px); -webkit-backdrop-filter: saturate(180%) blur(26px);
+    border-right: 0.5px solid var(--hair); padding: 16px 14px; }
+  .brand { display: flex; align-items: center; gap: 11px; padding: 4px 6px 14px; }
+  .brand .logo { width: 34px; height: 34px; flex: 0 0 auto; filter: drop-shadow(0 3px 6px var(--accent-weak-2)); }
+  .brand .bt { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand .bt b { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+  .brand .bt span { font-size: 11px; color: var(--ink-soft); }
+
+  .side-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; gap: 4px; padding-right: 2px; }
+  .side-label { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); padding: 12px 8px 5px; }
+
+  .mcard { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; cursor: pointer;
+    border: 1px solid transparent; background: transparent; border-radius: 14px; padding: 10px; font: inherit; color: var(--ink);
+    transition: background 200ms ease, border-color 200ms ease, transform 100ms ease-out; }
+  .mcard:hover { background: var(--glass); }
+  .mcard:active { transform: scale(0.98); }
+  .mcard[aria-selected="true"] { background: var(--glass-strong); border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-weak-2), var(--shadow-soft); }
+  .mcard .av { width: 38px; height: 38px; flex: 0 0 auto; border-radius: 11px; display: grid; place-items: center; background: var(--paper-2); pointer-events: none; }
+  .mcard .mm { flex: 1 1 auto; min-width: 0; pointer-events: none; }
+  .mcard .mm b { font-size: 16px; font-weight: 650; }
+  .mcard .chk { width: 18px; height: 18px; flex: 0 0 auto; opacity: 0; transition: opacity 200ms ease; color: var(--accent); pointer-events: none; }
+  .mcard[aria-selected="true"] .chk { opacity: 1; }
+  .mcard .warmdot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: 0; margin-left: 2px; pointer-events: none; }
+  .mcard.warming .warmdot { opacity: 1; animation: pulse 1s ease-in-out infinite; }
+  .mcard.warming .chk { opacity: 0; }
+  @keyframes pulse { 0%,100% { opacity: 0.3 } 50% { opacity: 1 } }
+
+  .qitem { width: 100%; text-align: left; cursor: pointer; border: 0; background: transparent; color: var(--ink-soft);
+    border-radius: 11px; padding: 9px 10px; font: inherit; font-size: 13.5px; line-height: 1.4;
+    display: flex; gap: 8px; align-items: flex-start; transition: background 180ms ease, color 180ms ease, transform 100ms ease-out; }
+  .qitem:hover { background: var(--glass); color: var(--ink); }
+  .qitem:active { transform: scale(0.98); }
+  .qitem .qi { flex: 0 0 auto; color: var(--accent); margin-top: 1px; pointer-events: none; }
+  .qitem span { pointer-events: none; }
+
+  .main { flex: 1 1 auto; display: flex; flex-direction: column; min-width: 0; }
+  .topbar { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-bottom: 0.5px solid var(--hair);
+    position: relative; z-index: 70;
+    background: var(--glass); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); }
+  .hamb { display: grid; }                          /* always visible: toggles the sidebar */
+  body.nav-collapsed .sidebar { display: none; }    /* desktop: hamburger collapses the sidebar */
+  .curmodel { display: flex; align-items: center; gap: 9px; font-weight: 650; font-size: 15px; min-width: 0; }
+  .curmodel .av { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; background: var(--paper-2); flex: 0 0 auto; }
+  .curmodel #curName { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .topbar .spacer { flex: 1; }
+  .icon-btn { width: 36px; height: 36px; border-radius: 50%; border: 0.5px solid var(--hair); background: var(--glass-strong); color: var(--ink);
+    cursor: pointer; display: grid; place-items: center; transition: transform 110ms ease-out; flex: 0 0 auto; }
+  .icon-btn:active { transform: scale(0.9); }
+  .icon-btn svg { width: 18px; height: 18px; }
+
+  main.scroller { flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; }
+  .thread { max-width: 760px; margin: 0 auto; padding: 22px 20px 14px; display: flex; flex-direction: column; gap: 22px; }
+  .empty { min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 8px; }
+  .empty .hero { width: 132px; height: 132px; margin-bottom: 6px; }
+  .empty h2 { margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.015em; }
+  .empty p { margin: 2px 0 14px; color: var(--ink-soft); font-size: 15px; max-width: 36ch; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 560px; }
+  .chip { border: 0.5px solid var(--hair); background: var(--glass-strong); color: var(--ink); cursor: pointer; border-radius: 100px; padding: 9px 15px; font: inherit; font-size: 13.5px;
+    transition: transform 100ms ease-out, border-color 180ms ease, background 180ms ease; font-family: "Kohinoor Bangla","Bangla MN",-apple-system,sans-serif; }
+  .chip:hover { border-color: var(--accent-weak-2); } .chip:active { transform: scale(0.96); background: var(--accent-weak); }
+
+  .msg { display: flex; flex-direction: column; gap: 7px; animation: rise 380ms var(--spring) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(9px) } to { opacity: 1; transform: none } }
+  .msg.user { align-items: flex-end; }
+  .msg.user .bubble { max-width: 85%; background: var(--accent); color: var(--accent-ink); padding: 11px 16px; border-radius: 20px 20px 6px 20px; font-size: 16px; }
+  .row { display: flex; gap: 11px; align-items: flex-start; }
+  .row .av { width: 30px; height: 30px; flex: 0 0 auto; border-radius: 9px; display: grid; place-items: center; background: var(--paper-2); margin-top: 2px; }
+  .col { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .tag { font-size: 12.5px; font-weight: 700; }
+  .bubble { white-space: pre-wrap; word-break: break-word; line-height: 1.6; }
+  .msg.bot .bubble { background: var(--glass-strong); border: 0.5px solid var(--hair); padding: 12px 16px; border-radius: 4px 16px 16px 16px;
+    box-shadow: var(--shadow-soft); font-size: 16px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .msg.note .bubble { background: var(--accent-weak); border: 0.5px solid var(--accent-weak-2); }
+  .caret { display: inline-block; width: 2px; height: 1.05em; background: var(--accent); margin-left: 1px; vertical-align: -0.15em; animation: blink 1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0 } }
+  .inline-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 9px; }
+
+  .composer-wrap { flex: 0 0 auto; padding: 8px 16px max(env(safe-area-inset-bottom), 14px); border-top: 0.5px solid var(--hair);
+    background: var(--glass); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); }
+  .composer { max-width: 760px; margin: 0 auto; display: flex; align-items: flex-end; gap: 9px; }
+  .field { flex: 1 1 auto; display: flex; align-items: flex-end; border-radius: 24px; padding: 5px 5px 5px 18px; background: var(--glass-strong); border: 0.5px solid var(--hair); box-shadow: var(--shadow-soft); }
+  textarea { flex: 1; border: 0; background: transparent; resize: none; font: inherit; color: var(--ink); max-height: 140px; padding: 8px 0; line-height: 1.45; outline: none;
+    font-family: "Kohinoor Bangla","Bangla MN",-apple-system,sans-serif; }
+  textarea::placeholder { color: var(--ink-faint); }
+  .send { flex: 0 0 auto; width: 38px; height: 38px; border-radius: 50%; border: 0; cursor: pointer; margin-bottom: 1px;
+    background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; transition: transform 130ms var(--spring), opacity 180ms ease; }
+  .send svg { width: 18px; height: 18px; }
+  .send:disabled { opacity: 0.34; cursor: default; } .send:not(:disabled):active { transform: scale(0.84); }
+
+  .scrim { position: fixed; inset: 0; background: rgba(14,14,26,0.4); opacity: 0; pointer-events: none; transition: opacity 300ms ease; z-index: 40; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+  .scrim.open { opacity: 1; pointer-events: auto; }
+  .sheet { position: fixed; left: 50%; bottom: 0; transform: translate(-50%, 110%); width: min(540px, 100%); z-index: 50;
+    border-radius: 24px 24px 0 0; padding: 10px 20px max(env(safe-area-inset-bottom), 22px); box-shadow: 0 -12px 44px rgba(20,20,50,0.3);
+    transition: transform 480ms var(--spring); max-height: 82dvh; overflow-y: auto;
+    background: var(--glass-strong); backdrop-filter: saturate(180%) blur(30px); -webkit-backdrop-filter: saturate(180%) blur(30px); border: 0.5px solid var(--glass-edge); }
+  .sheet.open { transform: translate(-50%, 0); }
+  .grabber { width: 40px; height: 5px; border-radius: 3px; background: var(--hair); margin: 4px auto 16px; }
+  .sheet h2 { font-size: 17px; margin: 0 0 14px; font-weight: 700; }
+  .set-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 2px; border-top: 0.5px solid var(--hair); }
+  .set-row:first-of-type { border-top: 0; }
+  .set-row .label { font-size: 15px; font-weight: 550; }
+  .mini-seg { display: inline-grid; grid-auto-flow: column; gap: 2px; background: var(--accent-weak); border-radius: 11px; padding: 3px; }
+  .mini-seg button { appearance: none; border: 0; background: transparent; font: inherit; font-size: 13px; font-weight: 600; color: var(--ink-soft); padding: 7px 13px; border-radius: 9px; cursor: pointer; transition: all 200ms var(--spring); }
+  .mini-seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); box-shadow: var(--shadow-soft); }
+
+  @media (max-width: 860px) {
+    .sidebar { position: fixed; top: 0; bottom: 0; left: 0; z-index: 60; width: 284px; flex-basis: 284px; padding-top: 68px; transform: translateX(-104%); transition: transform 420ms var(--spring); box-shadow: var(--shadow); }
+    .sidebar.open { transform: translateX(0); }
+    body.nav-collapsed .sidebar { display: flex; }   /* on mobile the drawer, not collapse, governs visibility */
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition-duration: 0.001ms !important; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <span class="logo" id="brandLogo"></span>
+      <span class="bt"><b id="brandTitle">NCTB পদার্থবিজ্ঞান</b><span id="brandSub">পদার্থবিজ্ঞান সহকারী</span></span>
+    </div>
+    <div class="side-scroll">
+      <div class="side-label" id="lblModels">মডেল</div>
+      <div id="modelList"></div>
+      <div class="side-label" id="lblSamples">নমুনা প্রশ্ন</div>
+      <div id="sideSamples"></div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <button class="icon-btn hamb" id="hamb" aria-label="Menu"></button>
+      <div class="curmodel"><span class="av" id="curAv"></span><span id="curName">—</span></div>
+      <div class="spacer"></div>
+      <button class="icon-btn" id="settingsBtn2" aria-label="Settings"></button>
+    </div>
+
+    <main class="scroller" id="scroller"><div class="thread" id="thread"></div></main>
+
+    <div class="composer-wrap">
+      <div class="composer">
+        <div class="field">
+          <textarea id="input" rows="1" placeholder="প্রশ্ন লেখো…" class="bn" enterkeyhint="send"></textarea>
+          <button class="send" id="send" aria-label="Send" disabled></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="settingsSheet" role="dialog" aria-label="Settings">
+  <div class="grabber"></div>
+  <h2 id="setTitle">সেটিংস</h2>
+  <div class="set-row"><span class="label" id="rowLang">ভাষা</span>
+    <div class="mini-seg" id="langSeg"><button data-lang="bn">বাংলা</button><button data-lang="en">English</button></div></div>
+  <div class="set-row"><span class="label" id="rowTheme">থিম</span>
+    <div class="mini-seg" id="themeSeg"><button data-theme="system"></button><button data-theme="light"></button><button data-theme="dark"></button></div></div>
+  <div class="set-row"><span class="label" id="rowChat">চ্যাট</span>
+    <button id="clearBtn" style="cursor:pointer;color:var(--accent);font-weight:650;padding:7px 14px;border:0;background:var(--accent-weak);border-radius:10px;font:inherit"></button></div>
+</div>
+
+<script>
+const ICON = {
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+  menu:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>',
+  gear:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
+  send:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
+  spark:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.6 4.8L18 8.4l-4.4 1.6L12 15l-1.6-5L6 8.4l4.4-1.6z"/></svg>'
+};
+function atom(rings, colorVar, size) {
+  const angles = [0,60,120].slice(0, rings);
+  const orbits = angles.map(a => `<ellipse cx="50" cy="50" rx="33" ry="13" fill="none" style="stroke:${colorVar}" stroke-width="4" transform="rotate(${a} 50 50)"/>`).join('');
+  const dots = angles.map(a => { const r=a*Math.PI/180, x=50+33*Math.cos(r), y=50+33*Math.sin(r); return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4" style="fill:${colorVar}"/>`; }).join('');
+  return `<svg viewBox="0 0 100 100" width="${size}" height="${size}" aria-hidden="true">${orbits}${dots}<circle cx="50" cy="50" r="8" style="fill:${colorVar}"/></svg>`;
+}
+
+const T = {
+  bn: { brandTitle:'NCTB পদার্থবিজ্ঞান', brandSub:'পদার্থবিজ্ঞান সহকারী', models:'মডেল', samples:'নমুনা প্রশ্ন',
+    theme:'থিম', settings:'সেটিংস', lang:'ভাষা', chat:'চ্যাট', clear:'মুছে ফেলো',
+    system:'সিস্টেম', light:'লাইট', dark:'ডার্ক', placeholder:'প্রশ্ন লেখো…',
+    emptyH:'কী জানতে চাও?', emptyP:'পদার্থবিজ্ঞান নিয়ে যেকোনো প্রশ্ন করো। নিচের যেকোনোটিতে ট্যাপ করেও শুরু করতে পারো।',
+    assistant:'সহকারী',
+    noAns:'⚠️ এই মডেল থেকে কোনো উত্তর আসেনি — অন্য মডেল চেষ্টা করো।', noConn:'⚠️ সংযোগে সমস্যা। Ollama চালু আছে কি?',
+    loadFail:'⚠️ মডেল তালিকা লোড হয়নি। সার্ভারটি (python3 server.py) চালু আছে কি?' },
+  en: { brandTitle:'NCTB Physics', brandSub:'Physics assistant', models:'Models', samples:'Sample questions',
+    theme:'Theme', settings:'Settings', lang:'Language', chat:'Chat', clear:'Clear',
+    system:'System', light:'Light', dark:'Dark', placeholder:'Ask a question…',
+    emptyH:'What do you want to know?', emptyP:'Ask any physics question. You can also tap one below to start.',
+    assistant:'Assistant',
+    noAns:'⚠️ No answer from this model — try another one.', noConn:'⚠️ Connection problem. Is Ollama running?',
+    loadFail:'⚠️ Could not load the model list. Is the server (python3 server.py) running?' }
+};
+let L = localStorage.getItem('lang') || 'bn';
+const t = k => T[L][k];
+
+const ACC = ['var(--m0)','var(--m1)','var(--m2)'], RINGS = [1,2,3];
+let MODELS = [], SAMPLES = [], current = 0, streaming = false, warmController = null;
+const $ = s => document.querySelector(s);
+const thread = $('#thread'), scroller = $('#scroller'), input = $('#input'), sendBtn = $('#send');
+
+function applyLang(lang) {
+  L = lang; localStorage.setItem('lang', lang); document.documentElement.lang = lang;
+  const bn = lang === 'bn';
+  const setTxt = (id, key) => { const e = document.getElementById(id); if (e) { e.textContent = t(key); e.classList.toggle('bn', bn); } };
+  setTxt('brandTitle','brandTitle'); setTxt('brandSub','brandSub'); setTxt('lblModels','models'); setTxt('lblSamples','samples');
+  setTxt('setTitle','settings'); setTxt('rowLang','lang'); setTxt('rowTheme','theme'); setTxt('rowChat','chat');
+  $('#clearBtn').textContent = t('clear'); $('#clearBtn').classList.toggle('bn', bn);
+  input.placeholder = t('placeholder'); input.classList.toggle('bn', bn);
+  const th = $('#themeSeg').querySelectorAll('button'); th[0].textContent=t('system'); th[1].textContent=t('light'); th[2].textContent=t('dark');
+  th.forEach(b => b.classList.toggle('bn', bn));
+  $('#langSeg').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
+  renderModels(); renderEmptyIfPresent();
+}
+$('#langSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (b) applyLang(b.dataset.lang); });
+
+function applyTheme(mode) {
+  if (mode === 'system') document.documentElement.removeAttribute('data-theme');
+  else document.documentElement.setAttribute('data-theme', mode);
+  localStorage.setItem('theme', mode);
+  $('#themeSeg').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.theme === mode));
+}
+$('#themeSeg').addEventListener('click', e => { const b = e.target.closest('button'); if (b) applyTheme(b.dataset.theme); });
+
+// ---------- models ----------
+function renderModels() {
+  const list = $('#modelList'); list.innerHTML = '';
+  MODELS.forEach((m, i) => {
+    const b = document.createElement('button'); b.className = 'mcard'; b.dataset.i = i; b.setAttribute('role','tab');
+    b.setAttribute('aria-selected', i === current);
+    b.innerHTML = `<span class="av">${atom(RINGS[i], ACC[i], 24)}</span><span class="mm"><b>${m.label}</b></span><span class="warmdot"></span><span class="chk">${ICON.check}</span>`;
+    list.appendChild(b);
+  });
+}
+$('#modelList').addEventListener('click', e => { const c = e.target.closest('.mcard'); if (c) selectModel(+c.dataset.i); });
+function selectModel(i, { warm = true } = {}) {
+  current = i; localStorage.setItem('defModel', i);
+  document.querySelectorAll('#modelList .mcard').forEach((b,k) => b.setAttribute('aria-selected', k === i));
+  $('#curAv').innerHTML = atom(RINGS[i], ACC[i], 20);
+  $('#curName').textContent = MODELS[i].label;
+  closeDrawer();
+  if (warm) warmModel();
+}
+async function warmModel() {
+  if (warmController) warmController.abort();
+  warmController = new AbortController();
+  const card = document.querySelectorAll('#modelList .mcard')[current];
+  card && card.classList.add('warming');
+  try { await fetch('/api/warm', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ model: MODELS[current].id }), signal: warmController.signal }); } catch(_){}
+  card && card.classList.remove('warming');
+}
+
+// ---------- messages ----------
+function renderEmptyIfPresent() { if ($('#empty')) { thread.innerHTML=''; thread.appendChild(buildEmpty()); } }
+function buildEmpty() {
+  const d = document.createElement('div'); d.className = 'empty'; d.id = 'empty';
+  d.innerHTML = `<span class="hero">${atom(3,'var(--accent)',132)}</span><h2 class="${L==='bn'?'bn':''}">${t('emptyH')}</h2><p class="${L==='bn'?'bn':''}">${t('emptyP')}</p><div class="chips" id="emptyChips"></div>`;
+  const c = d.querySelector('#emptyChips'); SAMPLES.slice(0,4).forEach(q => c.appendChild(makeChip(q)));
+  return d;
+}
+function clearEmpty() { const e = $('#empty'); if (e) e.remove(); }
+function addUser(text){ clearEmpty(); const m=document.createElement('div'); m.className='msg user'; const b=document.createElement('div'); b.className='bubble bn'; b.textContent=text; m.appendChild(b); thread.appendChild(m); scrollDown(); }
+function addBot(idx){ const m=document.createElement('div'); m.className='msg bot'; const row=document.createElement('div'); row.className='row';
+  const av=document.createElement('span'); av.className='av'; av.innerHTML=atom(RINGS[idx],ACC[idx],22);
+  const col=document.createElement('div'); col.className='col'; const tag=document.createElement('div'); tag.className='tag'; tag.style.color=ACC[idx]; tag.textContent=MODELS[idx].label;
+  const b=document.createElement('div'); b.className='bubble bn'; const caret=document.createElement('span'); caret.className='caret'; b.appendChild(caret);
+  col.append(tag,b); row.append(av,col); m.appendChild(row); thread.appendChild(m); scrollDown(); return {bubble:b, caret}; }
+function addNote(text, chips){ clearEmpty(); const m=document.createElement('div'); m.className='msg bot note'; const row=document.createElement('div'); row.className='row';
+  const av=document.createElement('span'); av.className='av'; av.innerHTML=atom(3,'var(--accent)',22);
+  const col=document.createElement('div'); col.className='col'; const tag=document.createElement('div'); tag.className='tag'; tag.style.color='var(--accent)'; tag.textContent=t('assistant');
+  const b=document.createElement('div'); b.className='bubble'+(L==='bn'?' bn':''); b.textContent=text; col.append(tag,b);
+  if (chips){ const w=document.createElement('div'); w.className='inline-chips'; SAMPLES.slice(0,2).forEach(q=>w.appendChild(makeChip(q))); col.appendChild(w); }
+  row.append(av,col); m.appendChild(row); thread.appendChild(m); scrollDown(); }
+function scrollDown(){ scroller.scrollTo({top:scroller.scrollHeight, behavior:'smooth'}); }
+
+// ---------- small-talk (physics-only models can't chat) ----------
+const SMALLTALK = [
+  { re: /(who are you|what are you|introduce|তুমি কে|কে তুমি|তোমার পরিচয়|আপনি কে)/i, chips: false,
+    bn: 'আমি NCTB নবম-দশম শ্রেণির পদার্থবিজ্ঞানের ওপর প্রশিক্ষিত একটি ছোট ভাষা-মডেল। আমি শুধু পদার্থবিজ্ঞানের প্রশ্নের উত্তর দিতে শিখেছি।',
+    en: 'I’m a small language model trained on NCTB Grade 9–10 physics. I’m built to answer physics questions only.' },
+  { re: /(what can you (do|help)|how can you help|কী পারো|কি পারো|কী করতে পারো|তুমি কী কর)/i, chips: true,
+    bn: 'আমি পদার্থবিজ্ঞানের সংজ্ঞা, সূত্র ও ধারণা ব্যাখ্যা করতে পারি। ওপরে মডেল বদলে ০.৬B, ১.৭B ও ৪B-এর উত্তর তুলনাও করতে পারো।',
+    en: 'I can explain physics definitions, formulas and concepts. Switch models above to compare 0.6B, 1.7B and 4B answers.' },
+  { re: /(how are you|how('|’)?s it going|kemon acho|kemon achen|কেমন আছো|কেমন আছেন|ভালো আছো)/i, chips: false,
+    bn: 'আমি ভালো আছি, ধন্যবাদ! পদার্থবিজ্ঞান নিয়ে কী জানতে চাও?', en: 'I’m good, thanks! What physics topic can I help with?' },
+  { re: /(thanks|thank you|thx|thnx|ধন্যবাদ|শুকরিয়া|থ্যাংকস)/i, chips: false,
+    bn: 'সবসময়! আরও কিছু জানতে চাইলে প্রশ্ন করো।', en: 'Anytime! Ask another question whenever you like.' },
+  { re: /(bye|goodbye|good night|see ya|বিদায়|আল্লাহ হাফেজ|খোদা হাফেজ|শুভ রাত্রি)/i, chips: false,
+    bn: 'বিদায়! আবার দেখা হবে।', en: 'Goodbye! Come back anytime.' },
+  { re: /^(hi+|hey+|hello+|yo+|hola|salam|assalam|as-?salamu|walaikum|hallo|নমস্কার|হাই|হ্যালো|আসসালাম|সালাম|আদাব)\b/i, chips: true,
+    bn: 'নমস্কার! আমি NCTB পদার্থবিজ্ঞানের একটি সহকারী। পদার্থবিজ্ঞান নিয়ে যেকোনো প্রশ্ন করো — যেমন নিচেরগুলো।',
+    en: 'Hi! I’m an NCTB physics assistant. Ask me any physics question — like the ones below.' },
+];
+function matchSmalltalk(text) { const s = text.trim(); if (s.length > 42) return null; return SMALLTALK.find(x => x.re.test(s)) || null; }
+
+async function send() {
+  const text = input.value.trim(); if (!text || streaming) return;
+  addUser(text); input.value=''; autosize(); updateSend();
+  const st = matchSmalltalk(text);
+  if (st) { addNote(st[L], st.chips); return; }
+  const idx = current; streaming = true; updateSend();
+  const { bubble, caret } = addBot(idx);
+  try {
+    const res = await fetch('/api/chat', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ model: MODELS[idx].id, message: text }) });
+    const reader = res.body.getReader(); const dec = new TextDecoder(); let acc = '';
+    while (true) { const { done, value } = await reader.read(); if (done) break; acc += dec.decode(value,{stream:true}); caret.remove(); bubble.textContent=acc; bubble.appendChild(caret); scrollDown(); }
+    caret.remove(); if (!acc.trim()) bubble.textContent = t('noAns');
+  } catch(e){ caret.remove(); bubble.textContent = t('noConn'); } finally { streaming=false; updateSend(); }
+}
+function autosize(){ input.style.height='auto'; input.style.height=Math.min(input.scrollHeight,140)+'px'; }
+function updateSend(){ sendBtn.disabled = streaming || !input.value.trim(); }
+input.addEventListener('input', () => { autosize(); updateSend(); });
+input.addEventListener('keydown', e => { if (e.key==='Enter' && !e.shiftKey){ e.preventDefault(); send(); } });
+sendBtn.addEventListener('click', send);
+
+function fillInput(q){ input.value=q; autosize(); updateSend(); input.focus(); }
+function makeChip(q){ const c=document.createElement('button'); c.className='chip bn'; c.textContent=q; c.addEventListener('click', () => fillInput(q)); return c; }
+
+const sidebar=$('#sidebar'), scrim=$('#scrim'), settingsSheet=$('#settingsSheet');
+function openDrawer(){ sidebar.classList.add('open'); scrim.classList.add('open'); }
+function closeDrawer(){ sidebar.classList.remove('open'); if (!settingsSheet.classList.contains('open')) scrim.classList.remove('open'); }
+function openSheet(el){ scrim.classList.add('open'); el.classList.add('open'); }
+function closeSheets(){ scrim.classList.remove('open'); settingsSheet.classList.remove('open'); sidebar.classList.remove('open'); }
+function toggleNav() {
+  if (window.innerWidth <= 860) {           // mobile: slide the drawer in/out
+    const open = sidebar.classList.toggle('open');
+    scrim.classList.toggle('open', open);
+  } else {                                   // desktop: collapse/expand the sidebar
+    document.body.classList.toggle('nav-collapsed');
+  }
+}
+$('#hamb').addEventListener('click', toggleNav);
+$('#settingsBtn2').addEventListener('click', () => openSheet(settingsSheet));
+scrim.addEventListener('click', closeSheets);
+$('#clearBtn').addEventListener('click', () => { thread.innerHTML=''; thread.appendChild(buildEmpty()); closeSheets(); });
+
+(async function init() {
+  $('#brandLogo').innerHTML = atom(3,'var(--accent)',34);
+  $('#hamb').innerHTML = ICON.menu; $('#settingsBtn2').innerHTML = ICON.gear; $('#send').innerHTML = ICON.send;
+  applyTheme(localStorage.getItem('theme') || 'system');
+
+  try { MODELS = await (await fetch('/api/models')).json(); }
+  catch(e){
+    applyLang(L);
+    const fileMode = location.protocol === 'file:';
+    const msg = fileMode
+      ? (L==='bn' ? '⚠️ ফাইলটি সরাসরি খুলো না। টার্মিনালে start.command চালিয়ে http://localhost:8000 খোলো।'
+                  : '⚠️ Don’t open the file directly. Run start.command, then open http://localhost:8000')
+      : t('loadFail');
+    thread.appendChild(Object.assign(document.createElement('div'),{className:'empty',innerHTML:`<p style="color:var(--accent);max-width:34ch">${msg}</p>`}));
+    return;
+  }
+  const savedDef = localStorage.getItem('defModel');
+  current = savedDef !== null ? parseInt(savedDef,10) : MODELS.length - 1;
+  if (current >= MODELS.length || current < 0) current = MODELS.length - 1;
+
+  try { SAMPLES = await (await fetch('/api/samples')).json(); } catch(e){ SAMPLES = []; }
+  const side = $('#sideSamples');
+  SAMPLES.forEach(q => { const b=document.createElement('button'); b.className='qitem bn'; b.innerHTML=`<span class="qi">${ICON.spark}</span><span>${q}</span>`; b.addEventListener('click', ()=>{ fillInput(q); closeDrawer(); }); side.appendChild(b); });
+
+  applyLang(L);
+  selectModel(current, { warm:false });
+  thread.appendChild(buildEmpty());
+  setTimeout(warmModel, 400);
+})();
+</script>
+</body>
+</html>

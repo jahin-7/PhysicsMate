@@ -1,0 +1,21 @@
+qa_pairs: 1834
+knowledge_nodes: 1760
+graph_edges: 2600
+cleaned_chunks: 811
+chapters: 13
+split_train: 1374
+split_val: 185
+split_test: 275
+avg_question_chars: 50.3
+avg_answer_chars: 117.2
+node_types:
+  concept: 397
+  question: 252
+  quantity: 224
+  figure: 218
+  example: 188
+  entity: 176
+  definition: 136
+  formula: 83
+  law: 65
+  hsc_topic: 21

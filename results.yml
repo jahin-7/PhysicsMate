@@ -1,0 +1,14 @@
+# Metrics for each shipped model, on the held-out test set (n=275).
+# token_f1 and bertscore are DETERMINISTIC — reproduced exactly by evaluate.py
+# (verify.py asserts them). accuracy_llm_judge is an automatic LLM-as-a-judge
+# score (MT-Bench protocol; correct iff the answer conveys the gold's key fact),
+# reported to corroborate the deterministic metrics; verify.py does NOT assert it.
+qwen0.6b:
+  raw: {token_f1: 0.216, bertscore: 0.696, accuracy_llm_judge: 0.000}
+  ft:  {token_f1: 0.278, bertscore: 0.750, accuracy_llm_judge: 0.055}
+qwen1.7b:
+  raw: {token_f1: 0.227, bertscore: 0.706, accuracy_llm_judge: 0.105}
+  ft:  {token_f1: 0.299, bertscore: 0.765, accuracy_llm_judge: 0.255}
+qwen4b:
+  raw: {token_f1: 0.252, bertscore: 0.722, accuracy_llm_judge: 0.276}
+  ft:  {token_f1: 0.350, bertscore: 0.782, accuracy_llm_judge: 0.509}

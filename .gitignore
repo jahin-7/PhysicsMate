@@ -1,0 +1,22 @@
+# ---- large model binaries (exceed GitHub's 100 MB limit; ship via Releases/HF instead) ----
+*.gguf
+**/adapter/adapter_model.safetensors
+*.safetensors
+*.bin
+
+# ---- python / env junk ----
+__pycache__/
+*.pyc
+.venv/
+venv/
+ocr-env/
+*.egg-info/
+
+# ---- os / editor ----
+.DS_Store
+.idea/
+.vscode/
+
+# ---- local build intermediates ----
+submission/report_v*.html
+submission/report_print.html
