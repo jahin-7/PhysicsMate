@@ -20,3 +20,13 @@ ocr-env/
 # ---- local build intermediates ----
 submission/report_v*.html
 submission/report_print.html
+
+# ---- paper draft + class report/slides (kept local, not published here) ----
+paper_*.md
+docs/
+figs/
+submission/*.pdf
+submission/*.pptx
+submission/REPORT.md
+submission/PRESENTATION.md
+submission/build_*.py
