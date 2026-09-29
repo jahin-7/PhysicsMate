@@ -47,6 +47,7 @@ results.yml    reported per-model metrics
 stats.yml      reported dataset numbers
 demo/          offline chat app (local server -> Ollama, 3-model switcher)
 submission/    how to run the models + 50 test questions
+LICENSE-DATA   dataset license (CC BY-NC 4.0)
 ```
 
 ## Running a model directly
@@ -65,3 +66,10 @@ excluded via `.gitignore`. Rebuild them from training, or download from the repo
 **Data provenance.** The dataset is derived from the NCTB Grade 9–10 Physics
 textbook (© NCTB) and is shared for non-commercial research and educational use
 only. The QA pairs, knowledge graph, and code are the authors' own work.
+
+## License
+The dataset (`data/` and `dataset_src/`) is licensed under
+[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) — see
+[`LICENSE-DATA`](LICENSE-DATA). You may share and adapt it for non-commercial
+purposes with attribution. The license covers only the authors' contributions;
+the underlying NCTB textbook remains © NCTB.
