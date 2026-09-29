@@ -1,4 +1,4 @@
-# PhysicsMate — NCTB Bangla Physics QA with Small Language Models
+# PhysicsMate - NCTB Bangla Physics QA with Small Language Models
 
 Curriculum-grounded Bengali physics question answering for the NCTB Grade 9–10
 syllabus. This repo has everything used to build the system: the dataset, the
