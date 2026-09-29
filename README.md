@@ -1,4 +1,4 @@
-# PhysicsMate — NCTB Bangla Physics QA with Small Language Models
+# PhysicsMate: NCTB Bangla Physics QA with Small Language Models
 
 Curriculum-grounded Bengali physics question answering for the NCTB Grade 9–10
 syllabus. This repo has everything used to build the system: the dataset, the
@@ -65,3 +65,13 @@ excluded via `.gitignore`. Rebuild them from training, or download from the repo
 **Data provenance.** The dataset is derived from the NCTB Grade 9–10 Physics
 textbook (© NCTB) and is shared for non-commercial research and educational use
 only. The QA pairs, knowledge graph, and code are the authors' own work.
+
+## License
+The dataset (`data/`, `dataset_src/`, and the `models/*/raw.jsonl` / `ft.jsonl`
+predictions) is licensed under
+[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). See
+[`LICENSE`](LICENSE). You may share and adapt it for non-commercial purposes with
+attribution, and derivatives must use the same license.
+
+The code (the Python scripts, `demo/`, and the Ollama Modelfiles) is licensed
+under the [MIT License](LICENSE-CODE).
